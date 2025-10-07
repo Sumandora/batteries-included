@@ -1,6 +1,16 @@
 Changelog
 =========
 
+## v3.10.0
+
+- Add support for OCaml 5.4
+  #1140
+  (kit-ty-kate)
+
+- Update GitHub Actions CI
+  #1137
+  (Simmo Saan)
+
 ## v3.9.0
 
 - Add reset, find_opt and Seq functions to BatHashtbl
