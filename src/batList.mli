@@ -759,6 +759,15 @@ val ntake : int -> 'a list -> 'a list list
 
     @since 2.2.0 *)
 
+val slide : int -> 'a list -> 'a list list
+(** [slide n l] slides over [l] with windows of size [n].
+    [n] must be > 0.
+    @raise Invalid_argument if [n] <= 0.
+    Each list in the result has size n.
+    Example: [slide 3 [1; 2; 3; 4; 5] = [[1; 2; 3]; [2; 3; 4]; [3; 4; 5]]]
+
+    @since NEXT_RELEASE *)
+
 val drop : int -> 'a list -> 'a list
 (** [drop n l] returns [l] without the first [n] elements, or the empty
     list if [l] have less than [n] elements. *)

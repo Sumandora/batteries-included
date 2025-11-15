@@ -315,6 +315,27 @@ let ntake n l =
   ntake 2 [1; 2; 3; 4] = [[1; 2]; [3; 4]]
 *)
 
+let slide n l =
+  if n < 1 then invalid_arg "List.slide";
+  let rec loop dst l =
+    if length l < n then ()
+    else let taken = take n l in
+            loop (Acc.accum dst taken) (tl l)
+  in
+  let acc = Acc.create [] in
+  loop acc l;
+  acc.tl
+
+(*$T slide
+  slide 2 []           = [[]]
+  slide 2 [1]          = [[1]]
+  slide 2 [1; 2]       = [[1; 2]]
+  slide 2 [1; 2; 3]    = [[1; 2]; [2; 3]]
+  slide 2 [1; 2; 3; 4] = [[1; 2]; [2; 3]; [3; 4]]
+
+  slide 3 [1; 2; 3; 4; 5] = [[1; 2; 3]; [2; 3; 4]; [3; 4; 5]]
+*)
+
 let take_while p li =
   let rec loop dst = function
     | [] -> ()
