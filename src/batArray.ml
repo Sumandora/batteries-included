@@ -1023,6 +1023,22 @@ let tail a pos = let alen = length a in
       *)
 
 
+let slide n a =
+  if n < 1 then invalid_arg "Array.slide";
+  let length = length a - n + 1 in
+  if length < 1 then invalid_arg "Array.slide";
+  init length (fun i -> init n (fun j -> a.(i + j)))
+
+(*$T slide
+  slide 2 [| 1; 2 |]           = [| [| 1; 2 |] |]
+  slide 2 [| 1; 2; 3 |]        = [| [| 1; 2 |]; [| 2; 3 |] |]
+  slide 2 [| 1; 2; 3; 4 |]     = [| [| 1; 2 |]; [| 2; 3 |]; [| 3; 4 |] |]
+
+  slide 3 [| 1; 2; 3; 4; 5 |]  = [| [| 1; 2; 3 |]; [| 2; 3; 4 |]; [| 3; 4; 5 |] |]
+
+  slide 5 [| 1; 2; 3; 4; 5 |]  = [| [| 1; 2; 3; 4; 5 |] |]
+*)
+
 
 
 module Cap =

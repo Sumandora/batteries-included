@@ -630,6 +630,16 @@ val equal : 'a BatOrd.eq -> 'a array BatOrd.eq
     equal if their lengths are the same and corresponding elements
     test equal. *)
 
+val slide : int -> 'a array -> 'a array array
+(** [slide n a] slides over [a] with windows of size [n].
+    [n] must be > 0 and [n] must be < [length [a]].
+    @raise Invalid_argument if [n] <= 0.
+    @raise Invalid_argument if [n] > [length [a]].
+    Each array in the result has size n.
+    Example: [slide 3 [| 1; 2; 3; 4; 5 |] = [| [| 1; 2; 3 |]; [| 2; 3; 4 |]; [| 3; 4; 5 |] |]]
+
+    @since NEXT_RELEASE *)
+
 (** {1 Override modules}*)
 
 (** The following modules replace functions defined in {!Array} with
